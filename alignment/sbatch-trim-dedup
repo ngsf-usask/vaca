@@ -1,0 +1,31 @@
+#!/bin/bash
+
+#SBATCH --job-name=agilent-dedup
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+#SBATCH --time=00:59:00
+#SBATCH --mem=10G
+
+set -eux
+module load java/11.0.2
+
+NAM=$1; shift
+OUTDIR=$1; shift
+INFILE=$1
+BED=/globalhome/sah346/HPC/NGSF001/analysis/references/human/hg38/agilent_sureselect_human_all_exon_v8_hg38/S33266340_Padded.bed
+
+mkdir ${SLURM_TMPDIR}/${SLURM_JOB_ID} && cd ${SLURM_TMPDIR}/${SLURM_JOB_ID}
+
+echo $PWD
+
+rsync -v $INFILE ./${SLURM_JOB_ID}.infile.bam
+
+export JAVA_TOOL_OPTIONS=-Xmx8g
+
+~/src/AGeNT_2.0.5/agent/agent.sh -p -Xmx8g locatit -U -v2Hybrid -q 0 -K -C -R -IB -OB -l $BED -d 1 -X $PWD -o ${NAM} ${SLURM_JOB_ID}.infile.bam
+
+mkdir -p $OUTDIR
+
+rsync ${NAM}.bam $OUTDIR
+
+### EOF ###

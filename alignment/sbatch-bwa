@@ -1,0 +1,45 @@
+#!/bin/bash
+
+#SBATCH --job-name=bwa-align
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=9
+#SBATCH --time=4:30:00
+#SBATCH --mem=40G
+
+set -eux
+
+module load nixpkgs/16.09  gcc/5.4.0
+module load bwa/0.7.15
+module load samtools/1.10
+
+#rsync -avz /datastore/NGSF001/analysis/indices/human/gencode-30/star ${SLURM_TMPDIR}
+
+THREADS=4
+INDEX=/globalhome/sah346/HPC/NGSF001/analysis/indices/human/gencode-30/bwa/GRCh38.primary_assembly.genome.fa
+
+NAME=$1; shift
+OUTDIR=$1; shift
+R1=$1;shift
+R2=$1
+
+mkdir -p ${SLURM_TMPDIR}/$NAME && cd ${SLURM_TMPDIR}/$NAME
+
+rsync -v $R1 ${SLURM_TMPDIR}/$NAME/R1.fastq.gz
+rsync -v $R2 ${SLURM_TMPDIR}/$NAME/R2.fastq.gz
+
+ls $PWD
+echo R1
+zcat R1.fastq.gz | awk '/^@NB/{x++}END{print x}'
+echo R2
+zcat R1.fastq.gz | awk '/^@NB/{x++}END{print x}'
+
+bwa mem -C \
+    -t $THREADS \
+    $INDEX \
+    R1.fastq.gz \
+    R2.fastq.gz | \
+    samtools view -@ $THREADS -O BAM > $NAME.bam
+
+rsync -rvz ${SLURM_TMPDIR}/$NAME/*.bam $OUTDIR
+
+### EOF ###
