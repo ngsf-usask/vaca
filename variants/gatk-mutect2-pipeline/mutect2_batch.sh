@@ -13,3 +13,20 @@ set -eux
 #loading required modules
 module load gatk/4.2.2.0
 
+#reference file
+REF ='/datastore/NGSF001/analysis/references/human/gencode-30/GRCh38.primary_assembly.genome.fa'
+
+PROJECT_ID='20-1LICH-001'
+OUTDIR_NAME=$1
+BAM_FILE=$2
+
+#making project ID directory for storing results
+mkdir -p ${HOME}/projects/${PROJECT_ID}/
+mkdir -p ${HOME}/projects/${PROJECT_ID}/${OUTDIR_NAME}
+
+#Run Mutect2
+gatk Mutect2 -R ${REF} -I ${BAM_FILE} -O ${HOME}/projects/${PROJECT_ID}/${OUTDIR_NAME}/unfiltered.vcf &
+
+#wait for the process to finish
+wait $!
+
