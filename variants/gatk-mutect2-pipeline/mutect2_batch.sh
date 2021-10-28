@@ -22,9 +22,9 @@ BAM_FILE=$2
 
 #making project ID directory for storing results
 mkdir -p ${HOME}/projects/${PROJECT_ID}/
-mkdir -p ${HOME}/projects/${PROJECT_ID}/mutect2/${OUTDIR_NAME}
+mkdir -p ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}
 
 #Run Mutect2
-gatk Mutect2 -R ${REF} -I ${BAM_FILE} -O ${HOME}/projects/${PROJECT_ID}/mutect2/${OUTDIR_NAME}/unfiltered.vcf && gatk FilterMutectCalls -R ${REF} -V ${HOME}/projects/${PROJECT_ID}/${OUTDIR_NAME}/unfiltered.vcf -O ${HOME}/projects/${PROJECT_ID}/mutect2/${OUTDIR_NAME}/filtered.vcf
+gatk Mutect2 -R ${REF} -I ${BAM_FILE} -O ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/unfiltered.vcf && gatk FilterMutectCalls -R ${REF} -V ${HOME}/projects/${PROJECT_ID}/${OUTDIR_NAME}/unfiltered.vcf -O ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/filtered.vcf
 
 #https://gatk.broadinstitute.org/hc/en-us/articles/360035531132--How-to-Call-somatic-mutations-using-GATK4-Mutect2
