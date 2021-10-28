@@ -30,3 +30,4 @@ gatk Mutect2 -R ${REF} -I ${BAM_FILE} -O ${HOME}/projects/${PROJECT_ID}/${OUTDIR
 #wait for the process to finish
 wait $!
 
+#https://gatk.broadinstitute.org/hc/en-us/articles/360035531132--How-to-Call-somatic-mutations-using-GATK4-Mutect2
