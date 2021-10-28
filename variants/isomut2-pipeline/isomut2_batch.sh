@@ -27,9 +27,9 @@ BAM_FILE=$2
 
 #making project ID directory for storing results
 mkdir -p ${HOME}/projects/${PROJECT_ID}/
-mkdir -p ${HOME}/projects/${PROJECT_ID}/${OUTDIR_NAME}
+mkdir -p ${HOME}/projects/${PROJECT_ID}/isomut2-pipeline/${OUTDIR_NAME}
 
 # Run python script
 #passing two arguments output directory path and bam file name
-python $HOME/ngsf_git_repos/vaca/variants/isomut2_pipeline/isomut2_vaca_script.py ${HOME}/projects/${PROJECT_ID}/${OUTDIR_NAME} ${BAM_FILE}
+python $HOME/ngsf_git_repos/vaca/variants/isomut2_pipeline/isomut2_vaca_script.py ${HOME}/projects/${PROJECT_ID}/isomut2-pipeline/${OUTDIR_NAME} ${BAM_FILE}
 #python $HOME/ngsf_git_repos/vaca/variants/isomut2_pipeline/test.py ${HOME}/projects/${PROJECT_ID}/${OUTDIR_NAME} ${BAM_FILE}
