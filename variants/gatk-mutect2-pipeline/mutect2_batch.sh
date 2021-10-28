@@ -25,9 +25,8 @@ mkdir -p ${HOME}/projects/${PROJECT_ID}/
 mkdir -p ${HOME}/projects/${PROJECT_ID}/${OUTDIR_NAME}
 
 #Run Mutect2
-gatk Mutect2 -R ${REF} -I ${BAM_FILE} -O ${HOME}/projects/${PROJECT_ID}/${OUTDIR_NAME}/unfiltered.vcf &
+gatk Mutect2 -R ${REF} -I ${BAM_FILE} -O ${HOME}/projects/${PROJECT_ID}/${OUTDIR_NAME}/unfiltered.vcf
 
-#wait for the process to finish
-wait $!
+gatk FilterMutectCalls -R ${REF} -V ${HOME}/projects/${PROJECT_ID}/${OUTDIR_NAME}/unfiltered.vcf -O ${HOME}/projects/${PROJECT_ID}/${OUTDIR_NAME}/filtered.vcf
 
 #https://gatk.broadinstitute.org/hc/en-us/articles/360035531132--How-to-Call-somatic-mutations-using-GATK4-Mutect2
