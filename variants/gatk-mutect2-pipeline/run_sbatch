@@ -1,5 +1,5 @@
 for i in $(seq -w 13 24);
 do
-  sbatch isomut2_batch.sh E21000${i} "E21000${i}.SSAE8.sorted.merged.bam"
+  sbatch mutect2_batch.sh E21000${i} "E21000${i}.SSAE8.sorted.merged.bam"
   sleep 0.5
 done
