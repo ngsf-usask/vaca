@@ -14,7 +14,7 @@ set -eux
 module load gatk/4.2.2.0
 
 #reference file
-REF ='/datastore/NGSF001/analysis/references/human/gencode-30/GRCh38.primary_assembly.genome.fa'
+REF='/datastore/NGSF001/analysis/references/human/gencode-30/GRCh38.primary_assembly.genome.fa'
 
 PROJECT_ID='20-1LICH-001'
 OUTDIR_NAME=$1
