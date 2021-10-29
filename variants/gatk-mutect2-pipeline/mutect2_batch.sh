@@ -4,7 +4,7 @@
 #SBATCH --constraint=skylake
 #SBATCH --job-name=gatk-mutect2
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=2
+#SBATCH --cpus-per-task=4
 #SBATCH --time=1:00:00
 #SBATCH --mem=6G
 #SBATCH  --output=/globalhome/hxo752/HPC/slurm_logs/%j.out
