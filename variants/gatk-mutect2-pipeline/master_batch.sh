@@ -16,6 +16,7 @@ module load picard
 module load samtools
 
 #reference file
+SCRIPT_DIR='/globalhome/hxo752/HPC/ngsf_git_repos/vaca/variants/gatk-mutect2-pipeline'
 REF='/datastore/NGSF001/analysis/references/human/gencode-30/GRCh38.primary_assembly.genome.fa'
 PROJECT_ID='20-1LICH-001'
 INTERVALS="/datastore/NGSF001/analysis/references/human/hg38/agilent_sureselect_human_all_exon_v8_hg38/S33266340_Covered.bed"
@@ -50,22 +51,10 @@ mkdir -p ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}
 
 #wait
 
-#Run Mutect2 in tumor only mode (https://gatk.broadinstitute.org/hc/en-us/articles/360035531132--How-to-Call-somatic-mutations-using-GATK4-Mutect2
-#https://gatk.broadinstitute.org/hc/en-us/articles/360037593851-Mutect2)
-#First Run Mutect2 on normal samples to generate VCFs
-gatk Mutect2 \
-     -R ${REF} \
-     -I ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/${OUTDIR_NAME}_mdup_rg.bam \
-     -O ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/${OUTDIR_NAME}.vcf.gz
+CALL ${SCRIPT_DIR}/01_mutect2_call_on_normal_sample.sh
 
 wait
 
-#create Panel of Normals (PONs) using vcfs from previous step
-gatk CreateSomaticPanelOfNormals \
-    -vcfs ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/${OUTDIR_NAME}.vcf.gz \
-    -vcfs 4_NA19771.vcf.gz \
-    -vcfs 5_HG02759.vcf.gz \
-    -O ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/pon.vcf.gz
 
 wait
 
