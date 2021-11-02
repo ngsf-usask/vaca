@@ -55,13 +55,7 @@ CALL ${SCRIPT_DIR}/01_mutect2_call_on_normal_sample.sh
 
 wait
 
+CALL CALL ${SCRIPT_DIR}/02_call_PONS.sh
 
 wait
-
-gatk Mutect2 \
-  -R ${REF} \
-  -I ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/${OUTDIR_NAME}_mdup_rg.bam \
-  -L ${INTERVALS}
-  --germline-resource af-only-gnomad.vcf.gz \
-  --panel-of-normals ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/pon.vcf.gz \
-  -O ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/${OUTDIR_NAME}_mutect2_final.vcf.gz
+CALL ${SCRIPT_DIR}/03_mutect2_call_on_tumor_sample.sh
