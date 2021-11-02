@@ -28,10 +28,15 @@ mkdir -p ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}
 
 
 #Run MarkDeduplication MarkDuplicates (https://gatk.broadinstitute.org/hc/en-us/articles/4405451219355-MarkDuplicatesSpark)
+#Read Group Added
 #Run Mutect2 in tumor only mode (https://gatk.broadinstitute.org/hc/en-us/articles/360035531132--How-to-Call-somatic-mutations-using-GATK4-Mutect2)
 
-#java -jar $EBROOTPICARD/picard.jar MarkDuplicates I=${BAM_FILE} BARCODE_TAG="RX" O=${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/markduplicates.bam M=${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/marked_dup_metrics.txt && \
-java -jar $EBROOTPICARD/picard.jar ValidateSamFile I=${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/markduplicates.bam MODE=SUMMARY OUTPUT=${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/markduplicates.validated.txt
+java -jar $EBROOTPICARD/picard.jar MarkDuplicates I=${BAM_FILE} BARCODE_TAG="RX" O=${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/${OUTDIR_NAME}_markduplicates.bam M=${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/${OUTDIR_NAME}_marked_dup_metrics.txt && \
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups I=${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/${OUTDIR_NAME}_markduplicates.bam O=${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/${OUTDIR_NAME}_mdup_rg.bam RGID=4 RGLB=lib1 RGPL=ILLUMINA RGPU=unit1 RGSM=20 
+
+
+
+#java -jar $EBROOTPICARD/picard.jar ValidateSamFile I=${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/markduplicates.bam MODE=SUMMARY OUTPUT=${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/markduplicates.validated.txt
 
 #gatk Mutect2 -R ${REF} -L ${INTERVALS} -I ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/markduplicates.bam -O ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/unfiltered.vcf && \
 #gatk FilterMutectCalls -R ${REF} -V ${HOME}/projects/${PROJECT_ID}/${OUTDIR_NAME}/unfiltered.vcf -O ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/filtered.vcf
