@@ -46,12 +46,11 @@ mkdir -p ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}
 #                                    RGID=4 \
 #                                    RGLB=lib1 \
 #                                    RGPL=ILLUMINA \
-#                                    RGPU=unit1 RGSM=20 && \
+#                                    RGPU=unit1 RGSM=20
 
 
 #Run Mutect2 in tumor only mode (https://gatk.broadinstitute.org/hc/en-us/articles/360035531132--How-to-Call-somatic-mutations-using-GATK4-Mutect2
 #https://gatk.broadinstitute.org/hc/en-us/articles/360037593851-Mutect2)
-
 #First Run Mutect2 on normal samples to generate VCFs
 gatk Mutect2 \
      -R ${REF} \
@@ -76,9 +75,3 @@ gatk Mutect2 \
   --germline-resource af-only-gnomad.vcf.gz \
   --panel-of-normals ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/pon.vcf.gz \
   -O ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/${OUTDIR_NAME}_mutect2_final.vcf.gz
-
-#gatk Mutect2 -R ${REF} -L ${INTERVALS} -I ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/markduplicates.bam -O ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/unfiltered.vcf && \
-#gatk FilterMutectCalls -R ${REF} -V ${HOME}/projects/${PROJECT_ID}/${OUTDIR_NAME}/unfiltered.vcf -O ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/filtered.vcf
-#Validate samfile
-#java -jar $EBROOTPICARD/picard.jar ValidateSamFile I=${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/markduplicates.bam MODE=SUMMARY OUTPUT=${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/markduplicates.validated.txt
-
