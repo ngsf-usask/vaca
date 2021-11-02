@@ -36,17 +36,49 @@ mkdir -p ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}
 #java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups I=${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/${OUTDIR_NAME}_markduplicates.bam o=${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/${OUTDIR_NAME}_mdup_rg.bam RGID=4 RGLB=lib1 RGPL=ILLUMINA RGPU=unit1 RGSM=20 
 
 #run these commands from E21000* samples
-#java -jar $EBROOTPICARD/picard.jar MarkDuplicates I=${BAM_FILE} BARCODE_TAG="RX" O=${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/${OUTDIR_NAME}_markduplicates.bam M=${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/${OUTDIR_NAME}_marked_dup_metrics.txt && \
-#java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups I=${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/${OUTDIR_NAME}_markduplicates.bam O=${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/${OUTDIR_NAME}_mdup_rg.bam RGID=4 RGLB=lib1 RGPL=ILLUMINA RGPU=unit1 RGSM=20 
+#java -jar $EBROOTPICARD/picard.jar MarkDuplicates \
+#                                    I=${BAM_FILE} BARCODE_TAG="RX" \
+#                                    O=${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/${OUTDIR_NAME}_markduplicates.bam \
+#                                    M=${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/${OUTDIR_NAME}_marked_dup_metrics.txt && \
+#java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups 
+#                                    I=${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/${OUTDIR_NAME}_markduplicates.bam \
+#                                    O=${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/${OUTDIR_NAME}_mdup_rg.bam \
+#                                    RGID=4 \
+#                                    RGLB=lib1 \
+#                                    RGPL=ILLUMINA \
+#                                    RGPU=unit1 RGSM=20 && \
 
-#Run Mutect2 in tumor only mode (https://gatk.broadinstitute.org/hc/en-us/articles/360035531132--How-to-Call-somatic-mutations-using-GATK4-Mutect2)
-#First Run Mutect2 on normal samples to generate VCFs and combine these VCFs to create panel of normals (PONs)
-gatk Mutect2 -R ${REF} -I ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/${OUTDIR_NAME}_mdup_rg.bam -O ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/${OUTDIR_NAME}.vcf.gz
 
+#Run Mutect2 in tumor only mode (https://gatk.broadinstitute.org/hc/en-us/articles/360035531132--How-to-Call-somatic-mutations-using-GATK4-Mutect2
+#https://gatk.broadinstitute.org/hc/en-us/articles/360037593851-Mutect2)
+
+#First Run Mutect2 on normal samples to generate VCFs
+gatk Mutect2 \
+     -R ${REF} \
+     -I ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/${OUTDIR_NAME}_mdup_rg.bam \
+     -O ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/${OUTDIR_NAME}.vcf.gz
+
+wait
+
+#create Panel of Normals (PONs) using vcfs from previous step
+gatk CreateSomaticPanelOfNormals \
+    -vcfs ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/${OUTDIR_NAME}.vcf.gz \
+    -vcfs 4_NA19771.vcf.gz \
+    -vcfs 5_HG02759.vcf.gz \
+    -O ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/pon.vcf.gz
+
+wait
+
+gatk Mutect2 \
+  -R ${REF} \
+  -I ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/${OUTDIR_NAME}_mdup_rg.bam \
+  -L ${INTERVALS}
+  --germline-resource af-only-gnomad.vcf.gz \
+  --panel-of-normals ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/pon.vcf.gz \
+  -O ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/${OUTDIR_NAME}_mutect2_final.vcf.gz
 
 #gatk Mutect2 -R ${REF} -L ${INTERVALS} -I ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/markduplicates.bam -O ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/unfiltered.vcf && \
 #gatk FilterMutectCalls -R ${REF} -V ${HOME}/projects/${PROJECT_ID}/${OUTDIR_NAME}/unfiltered.vcf -O ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/filtered.vcf
-
 #Validate samfile
 #java -jar $EBROOTPICARD/picard.jar ValidateSamFile I=${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/markduplicates.bam MODE=SUMMARY OUTPUT=${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/markduplicates.validated.txt
 
