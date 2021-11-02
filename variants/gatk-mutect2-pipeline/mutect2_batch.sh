@@ -41,8 +41,7 @@ mkdir -p ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}
 
 #Run Mutect2 in tumor only mode (https://gatk.broadinstitute.org/hc/en-us/articles/360035531132--How-to-Call-somatic-mutations-using-GATK4-Mutect2)
 #First Run Mutect2 on normal samples to generate VCFs and combine these VCFs to create panel of normals (PONs)
-#gatk Mutect2 -R ${REF} -L ${INTERVALS} -I ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/markduplicates.bam -O ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/unfiltered.vcf && \
-
+gatk Mutect2 -R ${REF} -I ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/${OUTDIR_NAME}_mdup_rg.bam -O ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/${OUTDIR_NAME}.vcf.gz
 
 
 #gatk Mutect2 -R ${REF} -L ${INTERVALS} -I ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/markduplicates.bam -O ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/unfiltered.vcf && \
