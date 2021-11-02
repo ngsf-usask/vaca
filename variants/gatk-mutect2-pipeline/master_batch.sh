@@ -51,11 +51,11 @@ mkdir -p ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}
 
 #wait
 
-CALL ${SCRIPT_DIR}/01_mutect2_call_on_normal_sample.sh
+CALL ${SCRIPT_DIR}/01_mutect2_call_on_normal_samples.sh
 
 wait
 
-CALL CALL ${SCRIPT_DIR}/02_call_PONS.sh
+CALL CALL ${SCRIPT_DIR}/02_call_PONs.sh
 
 wait
 CALL ${SCRIPT_DIR}/03_mutect2_call_on_tumor_sample.sh
