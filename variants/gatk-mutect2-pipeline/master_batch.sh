@@ -55,7 +55,11 @@ CALL ${SCRIPT_DIR}/01_mutect2_call_on_normal_samples.sh
 
 wait
 
-CALL CALL ${SCRIPT_DIR}/02_call_PONs.sh
+CALL 
 
 wait
-CALL ${SCRIPT_DIR}/03_mutect2_call_on_tumor_sample.sh
+
+CALL ${SCRIPT_DIR}/03_create_PONs.sh
+
+wait
+CALL ${SCRIPT_DIR}/04_mutect2_call_on_tumor_sample.sh
