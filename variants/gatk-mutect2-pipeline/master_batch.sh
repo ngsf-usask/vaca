@@ -49,6 +49,7 @@ mkdir -p ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}
 #                                    RGPL=ILLUMINA \
 #                                    RGPU=unit1 RGSM=20
 
+samtool index ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/${OUTDIR_NAME}_mdup_rg.bam
 #Run Mutect2 in tumor only mode (https://gatk.broadinstitute.org/hc/en-us/articles/360035531132--How-to-Call-somatic-mutations-using-GATK4-Mutect2
 #https://gatk.broadinstitute.org/hc/en-us/articles/360037593851-Mutect2)
 #Run Mutect2 on induced and uninduced samples to generate VCFs
