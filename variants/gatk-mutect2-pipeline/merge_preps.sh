@@ -18,10 +18,10 @@ PROJECT_ID='20-1LICH-001'
 PREP1=$1
 PREP2=$2 
 
-mkdir $
-# Merge preps into one bam file
+mkdir -p ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/merged_bam
 
-samtools merge -X ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${PREP1}/${PREP1}_mdup_rg.bam ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${PREP2}/${PREP2}_mdup_rg.bam
+# Merge preps into one bam file
+samtools merge -X mkdir -p ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/merged_bam/${PREP1}_${PREP2}_merged.bam ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${PREP1}/${PREP1}_mdup_rg.bam ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${PREP2}/${PREP2}_mdup_rg.bam
 
 D2100001	E2100013
 D2100002	E2100014
@@ -35,4 +35,4 @@ D2100009	E2100021
 D2100010	E2100022
 D2100011	E2100023
 D2100012	E2100024
-PREP1
+
