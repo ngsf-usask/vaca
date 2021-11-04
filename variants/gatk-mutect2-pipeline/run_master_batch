@@ -21,7 +21,7 @@ do
 done < ${SCRIPT_DIR}prep_IDs.txt
  
  
-for i in $(seq 1 12)
+for i in $(seq 0 11)
 do
    set ${myarr[i]}
    sbatch merge_preps.sh $1 $2
