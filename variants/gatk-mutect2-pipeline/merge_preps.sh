@@ -22,17 +22,4 @@ mkdir -p ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/merged_bam
 
 # Merge preps into one bam file
 samtools merge -X mkdir -p ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/merged_bam/${PREP1}_${PREP2}_merged.bam ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${PREP1}/${PREP1}_mdup_rg.bam ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${PREP2}/${PREP2}_mdup_rg.bam'
-
-myarr=()
-while read line
-do 
- myarr+=("$line")
-done < /globalhome/hxo752/HPC/ngsf_git_repos/vaca/variants/gatk-mutect2-pipeline/prep_IDs.txt
- 
- for i in seq 1 12
- do
- set ${myarr[i]}
- echo $1
- echo $2
- done
  
