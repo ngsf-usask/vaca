@@ -12,6 +12,8 @@
 #  sleep 0.5
 #done
 
+
+
 SCRIPT_DIR=/globalhome/hxo752/HPC/ngsf_git_repos/vaca/variants/gatk-mutect2-pipeline/
 
 myarr=()
@@ -27,3 +29,4 @@ do
    sbatch merge_preps.sh $1 $2
    sleep 0.5
  done
+#https://stackoverflow.com/questions/68215694/how-to-submit-a-slurm-job-via-sbatch-that-depends-on-a-list-of-jobs
