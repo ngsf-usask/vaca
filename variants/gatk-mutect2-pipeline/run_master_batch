@@ -13,16 +13,17 @@
 #done
 
 SCRIPT_DIR=/globalhome/hxo752/HPC/ngsf_git_repos/vaca/variants/gatk-mutect2-pipeline/
+
 myarr=()
 while read line
 do 
    myarr+=("$line")
 done < ${SCRIPT_DIR}prep_IDs.txt
  
-
+ 
 for i in $(seq 1 12)
 do
    set ${myarr[i]}
    sbatch merge_preps.sh $1 $2
+   sleep 0.5
  done
- 
