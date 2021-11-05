@@ -21,5 +21,5 @@ PREP2=$2
 mkdir -p ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/merged_bam
 
 # Merge preps into one bam file
-samtools merge -f -X ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/merged_bam/${PREP1}_${PREP2}_merged.bam ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${PREP1}/${PREP1}_mdup_rg.bam ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${PREP2}/${PREP2}_mdup_rg.bam
+samtools merge -f -X ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/merged_bam/${PREP1}_${PREP2}_merged.bam  /datastore/NGSF001/projects/20-1LICH-001/mutect2-pipeline/${PREP1}/${PREP1}_mdup_rg.bam /datastore/NGSF001/projects/20-1LICH-001/mutect2-pipeline/${PREP2}/${PREP2}_mdup_rg.bam
  
