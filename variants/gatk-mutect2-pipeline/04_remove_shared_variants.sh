@@ -22,4 +22,6 @@ UNINDUCED_VCF=$2
 mkdir -p ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/filtered_vcfs/
 OUTPUT_DIR="${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/filtered_vcfs/"
 
-bcftools -C -c none -O z -o ${OUTPUT_DIR}${INDUCED_VCF}_${UNINDUCED_VCF} ${INDUCED_VCF} ${UNINDUCED_VCF}
+bcftools/1.13 -C -c none -O z -o ${OUTPUT_DIR}${INDUCED_VCF}_${UNINDUCED_VCF} ${INDUCED_VCF} ${UNINDUCED_VCF}
+
+bcftools/1.13 merge ${HOME}/projects/20-1LICH-001/mutect2-pipeline/mutect2_calling/D2100004_E2100016.vcf.gz ${HOME}/projects/20-1LICH-001/mutect2-pipeline/mutect2_calling/D2100009_E2100021.vcf.gz -o ${HOME}/projects/20-1LICH-001/mutect2-pipeline/filtered_vcfs/uninduced -O z
