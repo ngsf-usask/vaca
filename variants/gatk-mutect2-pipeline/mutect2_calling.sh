@@ -5,15 +5,13 @@
 #SBATCH --job-name=gatk-mutect2
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=4
-#SBATCH --time=2:30:00
+#SBATCH --time=2:00:00
 #SBATCH --mem=6G
 #SBATCH  --output=/globalhome/hxo752/HPC/slurm_logs/%j.out
 set -eux
 
 #loading required modules
 module load gatk/4.2.2.0
-module load picard
-module load samtools
 
 #reference file
 REF='/datastore/NGSF001/analysis/references/human/gencode-30/GRCh38.primary_assembly.genome.fa'
