@@ -16,6 +16,7 @@ module load gatk/4.2.2.0
 #reference file
 REF='/datastore/NGSF001/analysis/references/human/gencode-30/GRCh38.primary_assembly.genome.fa'
 PROJECT_ID='20-1LICH-001'
+INPUT_DIR="${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/merged_bam"
 INTERVALS='/datastore/NGSF001/analysis/references/human/hg38/agilent_sureselect_human_all_exon_v8_hg38/S33266340_Covered.noheader.noAlt.bed'
 PREP1=$1
 PREP2=$2
@@ -26,6 +27,6 @@ mkdir -p ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/mutect2_calling
 #Run Mutect2 on induced and uninduced samples to generate VCFs
 gatk Mutect2 \
      -R ${REF} \
-     -I ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/${PREP1}_${PREP2}_merged.bam  \
+     -I ${INPUT_DIR}/${PREP1}_${PREP2}_merged.bam  \
      -L ${INTERVALS} \
      -O ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/mutect2_calling/${PREP1}_${PREP2}.vcf.gz
