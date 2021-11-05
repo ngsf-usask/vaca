@@ -19,14 +19,15 @@ module load samtools
 REF='/datastore/NGSF001/analysis/references/human/gencode-30/GRCh38.primary_assembly.genome.fa'
 PROJECT_ID='20-1LICH-001'
 INTERVALS='/datastore/NGSF001/analysis/references/human/hg38/agilent_sureselect_human_all_exon_v8_hg38/S33266340_Covered.noheader.noAlt.bed'
-OUTDIR_NAME=$1
-BAM_FILE=$2
+PREP1=$1
+PREP2=$2
+mkdir -p ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/mutect2_calling
 
 #Run Mutect2 in tumor only mode (https://gatk.broadinstitute.org/hc/en-us/articles/360035531132--How-to-Call-somatic-mutations-using-GATK4-Mutect2
 #https://gatk.broadinstitute.org/hc/en-us/articles/360037593851-Mutect2)
 #Run Mutect2 on induced and uninduced samples to generate VCFs
 gatk Mutect2 \
      -R ${REF} \
-     -I ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/${OUTDIR_NAME}_mdup_rg.bam \
+     -I ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/${PREP1}_${PREP2}_merged.bam  \
      -L ${INTERVALS} \
-     -O ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/${OUTDIR_NAME}/${OUTDIR_NAME}.vcf.gz
+     -O ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/mutect2_calling/${PREP1}_${PREP2}.vcf.gz
