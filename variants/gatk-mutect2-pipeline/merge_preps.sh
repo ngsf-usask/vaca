@@ -24,4 +24,4 @@ mkdir -p ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/merged_bam
 #samtools merge -f ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/merged_bam/${PREP1}_${PREP2}_merged.bam  /datastore/NGSF001/projects/20-1LICH-001/mutect2-pipeline/${PREP1}/${PREP1}_mdup_rg.bam /datastore/NGSF001/projects/20-1LICH-001/mutect2-pipeline/${PREP2}/${PREP2}_mdup_rg.bam
 
 #index
-samtool index ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/merged_bam/${PREP1}_${PREP2}_merged.bam
+samtools index ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/merged_bam/${PREP1}_${PREP2}_merged.bam
