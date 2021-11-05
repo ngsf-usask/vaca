@@ -22,4 +22,4 @@ UNINDUCED_VCF=$2
 mkdir -p ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/filtered_vcfs/
 OUTPUT_DIR="${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/filtered_vcfs/"
 
-bcftools -C -c all -O z-o ${OUTPUT_DIR} ${INDUCED_VCF} ${UNINDUCED_VCF}
+bcftools -C -c none -O z -o ${OUTPUT_DIR}${INDUCED_VCF}_${UNINDUCED_VCF} ${INDUCED_VCF} ${UNINDUCED_VCF}
