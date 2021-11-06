@@ -57,6 +57,6 @@ do
    PREP_D2=$2 
    PREP_E2=$3
    
-    sbatch 04_merge_uninduced.sh $CLONE_ID $PREP_D1 $PREP_E1 $PREP_D2 $PREP_E2
+    sbatch ${SCRIPT_DIR}04_merge_uninduced.sh $CLONE_ID $PREP_D1 $PREP_E1 $PREP_D2 $PREP_E2
    sleep 0.5
  done
