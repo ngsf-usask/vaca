@@ -20,19 +20,43 @@
 #STEP2 : MERGE PREPS
 #STEP3 : MUTECT2 CALL
 #####################
+#SCRIPT_DIR=/globalhome/hxo752/HPC/ngsf_git_repos/vaca/variants/gatk-mutect2-pipeline/
+#myarr=()
+#while read line
+#do 
+#   myarr+=("$line")
+#done < ${SCRIPT_DIR}prep_IDs.txt
+ 
+#for i in $(seq 0 11)
+#do
+#   set ${myarr[i]}
+   #sbatch merge_preps.sh $1 $2
+#   sbatch mutect2_calling.sh $1 $2
+#   sleep 0.5
+# done
+#https://stackoverflow.com/questions/68215694/how-to-submit-a-slurm-job-via-sbatch-that-depends-on-a-list-of-jobs
+
+###########################################
+#STEP4 : MERGE UNINDUCED SAMPLES PER CLONE
+###########################################
 SCRIPT_DIR=/globalhome/hxo752/HPC/ngsf_git_repos/vaca/variants/gatk-mutect2-pipeline/
 myarr=()
 while read line
 do 
    myarr+=("$line")
-done < ${SCRIPT_DIR}prep_IDs.txt
- 
-for i in $(seq 0 11)
+done < ${SCRIPT_DIR}induced_uninduced_sample_IDs.txt
+
+for i in 3 7 11
 do
    set ${myarr[i]}
-   #sbatch merge_preps.sh $1 $2
-   sbatch mutect2_calling.sh $1 $2
+   CLONE_ID=$1 
+   PREP_D1=$2 
+   PREP_E1=$3
+   
+   set ${myarr[i+1]}
+   PREP_D2=$2 
+   PREP_E2=$3
+   
+    sbatch merge_uninduced.sh $CLONE_ID $PREP_D1 PREP_E1 PREP_D2 PREP_E2
    sleep 0.5
  done
-#https://stackoverflow.com/questions/68215694/how-to-submit-a-slurm-job-via-sbatch-that-depends-on-a-list-of-jobs
-
