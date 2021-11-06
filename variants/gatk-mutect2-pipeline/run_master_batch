@@ -25,13 +25,13 @@
 #while read line
 #do 
 #   myarr+=("$line")
-#done < ${SCRIPT_DIR}prep_IDs.txt
+#done < ${SCRIPT_DIR}induced_uninduced_sample_IDs.txt
  
 #for i in $(seq 0 11)
 #do
 #   set ${myarr[i]}
-   #sbatch 02_merge_preps.sh $1 $2
-#   sbatch 03_mutect2_calling.sh $1 $2
+   #sbatch 02_merge_preps.sh $2 $3
+#   sbatch 03_mutect2_calling.sh $2 $3
 #   sleep 0.5
 # done
 #https://stackoverflow.com/questions/68215694/how-to-submit-a-slurm-job-via-sbatch-that-depends-on-a-list-of-jobs
@@ -58,5 +58,27 @@ do
    PREP_E2=$3
    
     sbatch ${SCRIPT_DIR}04_merge_uninduced.sh $CLONE_ID $PREP_D1 $PREP_E1 $PREP_D2 $PREP_E2
+   sleep 0.5
+ done
+
+
+###################################################################
+#STEP4 : REMOVE VARIANTS FOUND IN UNINDUCED FROM INDUCED PER CLONE
+###################################################################
+SCRIPT_DIR=/globalhome/hxo752/HPC/ngsf_git_repos/vaca/variants/gatk-mutect2-pipeline/
+myarr=()
+while read line
+do 
+   myarr+=("$line")
+done < ${SCRIPT_DIR}induced_uninduced_sample_IDs.txt
+
+for i in 2 6 10
+do
+   set ${myarr[i]}
+   CLONE_ID=$1 
+   PREP_D1=$2 
+   PREP_E1=$3
+   
+    sbatch ${SCRIPT_DIR}05_merge_uninduced.sh $CLONE_ID $PREP_D1 $PREP_E1 
    sleep 0.5
  done
