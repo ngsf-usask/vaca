@@ -15,8 +15,6 @@ module load StdEnv/2020
 module load gcc/9.3.0
 module spider bcftools/1.13
 
-#reference file
-REF='/datastore/NGSF001/analysis/references/human/gencode-30/GRCh38.primary_assembly.genome.fa'
 PROJECT_ID='20-1LICH-001'
 INPUT_DIR="${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/mutect2_calling"
 INDUCED_VCF=$1
