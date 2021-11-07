@@ -16,10 +16,10 @@
 #module spider bcftools/1.13
 
 #PROJECT_ID='20-1LICH-001'
-INPUT_DIR="${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/mutect2_calling"
+INPUT_DIR="${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/mutect2_calling/"
 CLONE_ID=$1
 PREP1=$2
-PREP1=$3
+PREP2=$3
 
 mkdir -p ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/filtered_vcfs/
 OUTPUT_DIR="${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/filtered_vcfs/"
