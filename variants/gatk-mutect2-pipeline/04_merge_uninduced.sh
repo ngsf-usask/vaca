@@ -23,8 +23,5 @@ UNINDUCED_PREP_E1=$3
 UNINDUCED_PREP_D2=$4
 UNINDUCED_PREP_E2=$5
 
-mkdir -p ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/filtered_vcfs/
-OUTPUT_DIR="${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/filtered_vcfs/"
-
-echo "bcftools merge --force-samples ${INPUT_DIR}/${UNINDUCED_PREP_D1}_${UNINDUCED_PREP_E1}.vcf.gz ${INPUT_DIR}/${UNINDUCED_PREP_D2}_${UNINDUCED_PREP_E2}.vcf.gz -o ${OUTPUT_DIR}/${CLONE_ID}_uninduced_merged.vcf.gz -O z" >> test.sh
-echo "bcftools index -t ${OUTPUT_DIR}/${CLONE_ID}_uninduced_merged.vcf.gz" >> test1.sh
+bcftools merge --force-samples ${INPUT_DIR}/${UNINDUCED_PREP_D1}_${UNINDUCED_PREP_E1}.vcf.gz ${INPUT_DIR}/${UNINDUCED_PREP_D2}_${UNINDUCED_PREP_E2}.vcf.gz -o ${INPUT_DIR}/${CLONE_ID}_uninduced_merged.vcf.gz -O z
+bcftools index -t ${INPUT_DIR}/${CLONE_ID}_uninduced_merged.vcf.gz
