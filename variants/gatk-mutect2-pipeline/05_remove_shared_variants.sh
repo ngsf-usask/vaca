@@ -18,12 +18,12 @@ module spider bcftools/1.13
 PROJECT_ID='20-1LICH-001'
 INPUT_DIR="${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/mutect2_calling"
 CLONE_ID=$1
-INDUCED_VCF=$2
-UNINDUCED_VCF=$3
+PREP1=$2
+PREP1=$3
 
 mkdir -p ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/filtered_vcfs/
 OUTPUT_DIR="${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/filtered_vcfs/"
 
-bcftools isec -C -c none -O z -o ${OUTPUT_DIR}${CLONE_ID}_${INDUCED_VCF}_${UNINDUCED_VCF}.vcf.gz ${INPUT_DIR}${INDUCED_VCF}.vcf.gz ${INPUT_DIR}${CLONE_ID}_${UNINDUCED_VCF}.vcf.gz
+echo "bcftools isec -C -c none -O z -o ${OUTPUT_DIR}${CLONE_ID}_${PREP1}_${PREP2}.vcf.gz ${INPUT_DIR}${PREP1}_${PREP2}.vcf.gz ${INPUT_DIR}${CLONE_ID}_uninduced.vcf.gz" >> test.sh
 
 
