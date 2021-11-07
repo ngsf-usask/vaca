@@ -20,6 +20,7 @@ INPUT_DIR="${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/mutect2_calling"
 CLONE_ID=$1
 INDUCED_VCF=$2
 UNINDUCED_VCF=$3
+
 mkdir -p ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/filtered_vcfs/
 OUTPUT_DIR="${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/filtered_vcfs/"
 
