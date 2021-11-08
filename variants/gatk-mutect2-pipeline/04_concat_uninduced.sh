@@ -28,7 +28,7 @@ echo "${INPUT_DIR}/${UNINDUCED_PREP_D2}_${UNINDUCED_PREP_E2}.vcf.gz" >> ${CLONE_
 
 #bcftools merge --force-samples ${INPUT_DIR}/${UNINDUCED_PREP_D1}_${UNINDUCED_PREP_E1}.vcf.gz ${INPUT_DIR}/${UNINDUCED_PREP_D2}_${UNINDUCED_PREP_E2}.vcf.gz -o ${INPUT_DIR}/${CLONE_ID}_uninduced_concat.vcf.gz -O z
 bcftools concat -a \
-                -d exact \
+                -d all \
                 -O z \
                 -f ${CLONE_ID}_uniduced_file_names.txt \
                 -o ${INPUT_DIR}/${CLONE_ID}_uninduced_concat.vcf.gz 
