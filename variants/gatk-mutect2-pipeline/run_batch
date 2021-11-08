@@ -83,5 +83,8 @@ do
    sleep 0.5
  done
  
-################################# 
- #STEP 6: CONCATE BAM FILES FROM 
+###################################### 
+ #STEP 6: CONCATE BAM FILES FROM STEP2
+ #####################################
+ 
+ 06_concate_uninduced_from_step2.sh
