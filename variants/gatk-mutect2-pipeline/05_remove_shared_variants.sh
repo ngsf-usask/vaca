@@ -5,7 +5,7 @@
 ##SBATCH --job-name=bcftools
 ##SBATCH --ntasks=1
 ##SBATCH --cpus-per-task=2
-##SBATCH --time=30:00:00
+##SBATCH --time=00:30:00
 ##SBATCH --mem=4G
 ##SBATCH  --output=/globalhome/hxo752/HPC/slurm_logs/%j.out
 #set -eux
@@ -24,6 +24,12 @@ PREP2=$3
 mkdir -p ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/filtered_vcfs/
 OUTPUT_DIR="${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/filtered_vcfs/"
 
-echo "bcftools isec -C -c none -O z -w 1 -o ${OUTPUT_DIR}${CLONE_ID}_${PREP1}_${PREP2}.vcf.gz ${INPUT_DIR}${PREP1}_${PREP2}.vcf.gz ${INPUT_DIR}${CLONE_ID}_uninduced_merged.vcf.gz" >> test.sh
+echo "bcftools isec -C \
+-c none \
+-O z \
+-w 1 \
+-o ${OUTPUT_DIR}${CLONE_ID}_${PREP1}_${PREP2}.vcf.gz \
+${INPUT_DIR}${PREP1}_${PREP2}.vcf.gz \
+${INPUT_DIR}${CLONE_ID}_uninduced_merged.vcf.gz
 
 
