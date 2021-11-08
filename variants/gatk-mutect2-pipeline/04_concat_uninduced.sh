@@ -24,9 +24,6 @@ UNINDUCED_PREP_D2=$4
 UNINDUCED_PREP_E2=$5
 
 #bcftools merge --force-samples ${INPUT_DIR}/${UNINDUCED_PREP_D1}_${UNINDUCED_PREP_E1}.vcf.gz ${INPUT_DIR}/${UNINDUCED_PREP_D2}_${UNINDUCED_PREP_E2}.vcf.gz -o ${INPUT_DIR}/${CLONE_ID}_uninduced_concat.vcf.gz -O z
-bcftools concat -a -d all -O z \
-                -f ${INPUT_DIR}/${UNINDUCED_PREP_D1}_${UNINDUCED_PREP_E1}.vcf.gz \
-                -f ${INPUT_DIR}/${UNINDUCED_PREP_D2}_${UNINDUCED_PREP_E2}.vcf.gz \
-                -o ${INPUT_DIR}/${CLONE_ID}_uninduced_concat.vcf.gz 
+bcftools concat -a -d all -O z ${INPUT_DIR}/${UNINDUCED_PREP_D1}_${UNINDUCED_PREP_E1}.vcf.gz ${INPUT_DIR}/${UNINDUCED_PREP_D2}_${UNINDUCED_PREP_E2}.vcf.gz ${INPUT_DIR}/${CLONE_ID}_uninduced_concat.vcf.gz 
                 
 bcftools index -t ${INPUT_DIR}/${CLONE_ID}_uninduced_concat.vcf.gz 
