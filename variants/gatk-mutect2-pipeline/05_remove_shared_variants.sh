@@ -30,6 +30,6 @@ echo "bcftools isec -C \
 -w 1 \
 -o ${OUTPUT_DIR}${CLONE_ID}_${PREP1}_${PREP2}.vcf.gz \
 ${INPUT_DIR}${PREP1}_${PREP2}.vcf.gz \
-${INPUT_DIR}${CLONE_ID}_uninduced_merged.vcf.gz
+${INPUT_DIR}${CLONE_ID}_uninduced_concat.vcf.gz
 
 
