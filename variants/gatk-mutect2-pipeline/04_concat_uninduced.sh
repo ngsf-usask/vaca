@@ -23,7 +23,14 @@ UNINDUCED_PREP_E1=$3
 UNINDUCED_PREP_D2=$4
 UNINDUCED_PREP_E2=$5
 
+echo "${INPUT_DIR}/${UNINDUCED_PREP_D1}_${UNINDUCED_PREP_E1}.vcf.gz" >> ${CLONE_ID}_uniduced_file_names.txt
+echo "${INPUT_DIR}/${UNINDUCED_PREP_D2}_${UNINDUCED_PREP_E2}.vcf.gz" >> ${CLONE_ID}_uniduced_file_names.txt
+
 #bcftools merge --force-samples ${INPUT_DIR}/${UNINDUCED_PREP_D1}_${UNINDUCED_PREP_E1}.vcf.gz ${INPUT_DIR}/${UNINDUCED_PREP_D2}_${UNINDUCED_PREP_E2}.vcf.gz -o ${INPUT_DIR}/${CLONE_ID}_uninduced_concat.vcf.gz -O z
-bcftools concat -a -d all -O z ${INPUT_DIR}/${UNINDUCED_PREP_D1}_${UNINDUCED_PREP_E1}.vcf.gz ${INPUT_DIR}/${UNINDUCED_PREP_D2}_${UNINDUCED_PREP_E2}.vcf.gz ${INPUT_DIR}/${CLONE_ID}_uninduced_concat.vcf.gz 
+bcftools concat -a \
+                -d all \
+                -O z \
+                -f ${CLONE_ID}_uniduced_file_names.txt \
+                -o ${INPUT_DIR}/${CLONE_ID}_uninduced_concat.vcf.gz 
                 
 bcftools index -t ${INPUT_DIR}/${CLONE_ID}_uninduced_concat.vcf.gz 
