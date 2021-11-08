@@ -4,7 +4,7 @@
 #SBATCH --constraint=skylake
 #SBATCH --job-name=bcftools
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=2
+#SBATCH --cpus-per-task=1
 #SBATCH --time=00:15:00
 #SBATCH --mem=2G
 #SBATCH  --output=/globalhome/hxo752/HPC/slurm_logs/%j.out
