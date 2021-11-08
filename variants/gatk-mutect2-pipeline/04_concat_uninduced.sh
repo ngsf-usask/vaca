@@ -29,4 +29,4 @@ bcftools concat -a -d -O z \
                 -f ${INPUT_DIR}/${UNINDUCED_PREP_D2}_${UNINDUCED_PREP_E2}.vcf.gz \
                 -o ${INPUT_DIR}/${CLONE_ID}_uninduced_concat.vcf.gz 
                 
-bcftools index -t ${INPUT_DIR}/${CLONE_ID}_uninduced_concat.vcf.gz
+bcftools index -t ${INPUT_DIR}/${CLONE_ID}_uninduced_concat.vcf.gz 
