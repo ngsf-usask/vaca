@@ -86,31 +86,31 @@
 ###################################### 
  #STEP 6: CONCATE BAM FILES FROM STEP2
 #####################################
-SCRIPT_DIR=/globalhome/hxo752/HPC/ngsf_git_repos/vaca/variants/gatk-mutect2-pipeline/
-myarr=()
-while read line
-do 
-   myarr+=("$line")
-done < ${SCRIPT_DIR}sample_IDs.txt
+#SCRIPT_DIR=/globalhome/hxo752/HPC/ngsf_git_repos/vaca/variants/gatk-mutect2-pipeline/
+#myarr=()
+#while read line
+#do 
+#   myarr+=("$line")
+#done < ${SCRIPT_DIR}sample_IDs.txt
 
-for i in 2 6 10
-do
-   set ${myarr[i]}
-   CLONE_ID=$1 
-   PREP_D1=$2 
-   PREP_E1=$3
+#for i in 2 6 10
+#do
+ #  set ${myarr[i]}
+ #  CLONE_ID=$1 
+ #  PREP_D1=$2 
+ #  PREP_E1=$3
       
-   set ${myarr[i+1]}
-   PREP_D2=$2 
-   PREP_E2=$3
+ #  set ${myarr[i+1]}
+ #  PREP_D2=$2 
+ #  PREP_E2=$3
    
-    sbatch ${SCRIPT_DIR}06_concate_uninduced_from_step2.sh $CLONE_ID $PREP_D1 $PREP_E1 $PREP_D2 $PREP_E2
-   sleep 0.5
- done
+ #   sbatch ${SCRIPT_DIR}06_concate_uninduced_from_step2.sh $CLONE_ID $PREP_D1 $PREP_E1 $PREP_D2 $PREP_E2
+ #  sleep 0.5
+ #done
  
- ################## ################## ##################
- #STEP 7:CALCULATE COVERAGE PER BASE FOR UNINDUCED SAMPLES
- ################## ################## ##################
+################## ################## ##################
+#STEP 7:CALCULATE COVERAGE PER BASE FOR UNINDUCED SAMPLES
+################## ################## ##################
 SCRIPT_DIR=/globalhome/hxo752/HPC/ngsf_git_repos/vaca/variants/gatk-mutect2-pipeline/
 myarr=()
 while read line
