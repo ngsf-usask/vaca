@@ -25,6 +25,6 @@ echo "${INPUT_DIR}/${CLONE_ID}_uninduced_concat.bam" >> ${CLONE_ID}_uniduced_bam
 bcftools mpileup \ 
             -f ${REF} \
             -b ${CLONE_ID}_uniduced_bam.txt \
-            -o ${CLONE_ID}_mpileup.uniduced.vcf.gz
+            -o ${INPUT_DIR}/${CLONE_ID}_mpileup.uniduced.vcf.gz
             
             
