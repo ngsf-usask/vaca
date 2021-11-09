@@ -65,23 +65,23 @@
 #########################################################################
 #STEP5 : REMOVE SHARED VARIANTS BETWEEN INDUCED AND UNINDUCED PER PROTEINS
 #########################################################################
-#SCRIPT_DIR=/globalhome/hxo752/HPC/ngsf_git_repos/vaca/variants/gatk-mutect2-pipeline/
-#myarr=()
-#while read line
-#do 
- #  myarr+=("$line")
-#done < ${SCRIPT_DIR}sample_IDs.txt
+SCRIPT_DIR=/globalhome/hxo752/HPC/ngsf_git_repos/vaca/variants/gatk-mutect2-pipeline/
+myarr=()
+while read line
+do 
+   myarr+=("$line")
+done < ${SCRIPT_DIR}sample_IDs.txt
 
-#for i in 0 1 4 5 8 9
-#do
-  # set ${myarr[i]}
-  # CLONE_ID=$1 
-  # PREP_D1=$2 
-  # PREP_E1=$3
+for i in 0 1 4 5 8 9
+do
+   set ${myarr[i]}
+   CLONE_ID=$1 
+   PREP_D1=$2 
+   PREP_E1=$3
    
- #   sbatch ${SCRIPT_DIR}05_remove_shared_variants.sh $CLONE_ID $PREP_D1 $PREP_E1 
- #  sleep 0.5
- #done
+    sbatch ${SCRIPT_DIR}05_remove_shared_variants.sh $CLONE_ID $PREP_D1 $PREP_E1 
+   sleep 0.5
+ done
  
 ###################################### 
  #STEP 6: CONCATE BAM FILES FROM STEP2
@@ -111,19 +111,18 @@
 ################## ################## ##################
 #STEP 7:CALCULATE COVERAGE PER BASE FOR UNINDUCED SAMPLES
 ################## ################## ##################
-SCRIPT_DIR=/globalhome/hxo752/HPC/ngsf_git_repos/vaca/variants/gatk-mutect2-pipeline/
-myarr=()
-while read line
-do 
-   myarr+=("$line")
-done < ${SCRIPT_DIR}induced_uninduced_sample_IDs.txt
+#SCRIPT_DIR=/globalhome/hxo752/HPC/ngsf_git_repos/vaca/variants/gatk-mutect2-pipeline/
+#myarr=()
+#while read line
+#do 
+#   myarr+=("$line")
+#done < ${SCRIPT_DIR}induced_uninduced_sample_IDs.txt
 
 #for i in 2 6 10
-for i in 2
-do
-   set ${myarr[i]}
-   CLONE_ID=$1 
+#do
+#   set ${myarr[i]}
+#   CLONE_ID=$1 
    
-    sbatch ${SCRIPT_DIR}07_calculate_coverage_per_base_for_uninduced_samples.sh ${CLONE_ID}
-   sleep 0.5
-done
+#    sbatch ${SCRIPT_DIR}07_calculate_coverage_per_base_for_uninduced_samples.sh ${CLONE_ID}
+#   sleep 0.5
+#done
