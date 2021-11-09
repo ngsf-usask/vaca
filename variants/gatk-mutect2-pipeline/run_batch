@@ -116,7 +116,7 @@ myarr=()
 while read line
 do 
    myarr+=("$line")
-done < ${SCRIPT_DIR}induced_uninduced_sample_IDs.txt
+done < ${SCRIPT_DIR}sample_IDs.txt
 
 for i in 2 6 10
 do
