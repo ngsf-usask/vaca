@@ -29,8 +29,8 @@ samtools view -H \
 samtools cat \
             -o ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/merged_bam/${CLONE_ID}_uninduced_concat.bam \
             -h ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/merged_bam/sam_header.txt \
-            /datastore/NGSF001/projects/20-1LICH-001/mutect2-pipeline/${PREP1}/${PREP1}_mdup_rg.bam \
-            /datastore/NGSF001/projects/20-1LICH-001/mutect2-pipeline/${PREP3}/${PREP4}_mdup_rg.bam
+            ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/merged_bam/${PREP1}_${PREP2}_merged.bam \
+            ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/merged_bam/${PREP3}_${PREP4}_merged.bam
 
 #index
 samtools index ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/merged_bam/${CLONE_ID}_uninduced_concat.bam
