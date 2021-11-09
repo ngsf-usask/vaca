@@ -17,6 +17,8 @@ PROJECT_ID='20-1LICH-001'
 CLONE_ID=$1
 PREP1=$2
 PREP2=$3 
+PREP3=$4
+PREP4=$5
 
 #Retrieve sam header from file
 samtools view -H \
@@ -28,7 +30,7 @@ samtools cat \
             -o ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/merged_bam/${CLONE_ID}_uninduced_concat.bam \
             -h ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/merged_bam/sam_header.txt \
             /datastore/NGSF001/projects/20-1LICH-001/mutect2-pipeline/${PREP1}/${PREP1}_mdup_rg.bam \
-            /datastore/NGSF001/projects/20-1LICH-001/mutect2-pipeline/${PREP2}/${PREP2}_mdup_rg.bam
+            /datastore/NGSF001/projects/20-1LICH-001/mutect2-pipeline/${PREP3}/${PREP4}_mdup_rg.bam
 
 #index
 samtools index ${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/merged_bam/${CLONE_ID}_uninduced_concat.bam
