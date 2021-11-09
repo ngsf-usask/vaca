@@ -107,3 +107,22 @@ do
     sbatch ${SCRIPT_DIR}06_concate_uninduced_from_step2.sh $CLONE_ID $PREP_D1 $PREP_E1 $PREP_D2 $PREP_E2
    sleep 0.5
  done
+ 
+ ################## ################## ##################
+ #STEP 7:CALCULATE COVERAGE PER BASE FOR UNINDUCED SAMPLES
+ ################## ################## ##################
+SCRIPT_DIR=/globalhome/hxo752/HPC/ngsf_git_repos/vaca/variants/gatk-mutect2-pipeline/
+myarr=()
+while read line
+do 
+   myarr+=("$line")
+done < ${SCRIPT_DIR}induced_uninduced_sample_IDs.txt
+
+for i in 1 5 9
+do
+   set ${myarr[i]}
+   CLONE_ID=$1 
+   
+    sbatch ${SCRIPT_DIR}07_calculate_coverage_per_base_for_uninduced_samples.sh $CLONE_ID
+   sleep 0.5
+done
