@@ -19,12 +19,12 @@ REF='/datastore/NGSF001/analysis/references/human/gencode-30/GRCh38.primary_asse
 PROJECT_ID='20-1LICH-001'
 INPUT_DIR="${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/merged_bam/"
 CLONE_ID=$1
-
+NCPUS=6
 echo "${INPUT_DIR}/${CLONE_ID}_uninduced_concat.bam" >> ${CLONE_ID}_uniduced_bam.txt
 
 bcftools mpileup \ 
             -f ${REF} \
             -b ${CLONE_ID}_uniduced_bam.txt \
-            -o ${INPUT_DIR}/${CLONE_ID}_mpileup.uniduced.vcf.gz
-            
-            
+            -o ${INPUT_DIR}/${CLONE_ID}_mpileup.uniduced.vcf.gz \
+            -O z \
+            --threads ${NCPUS}
