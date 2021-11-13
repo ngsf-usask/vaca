@@ -21,6 +21,6 @@ INTERVALS='/datastore/NGSF001/analysis/references/human/hg38/agilent_sureselect_
 PREP1=$1
 PREP2=$2
 
-bcftools mpileup -Oz -f ${REF} /globalhome/hxo752/HPC/projects/20-1LICH-001/mutect2-pipeline/merged_bam/${PREP1}_${PREP2}_merged.bam | bcftools call -mv -Oz -f GQ -o /globalhome/hxo752/HPC/projects/20-1LICH-001/mutect2-pipeline/bcf_call/${PREP1}_${PREP2}.bcf.vcf.gz
+bcftools mpileup -Oz -f ${REF} /globalhome/hxo752/HPC/projects/20-1LICH-001/mutect2-pipeline/merged_bam/${PREP1}_${PREP2}_merged.bam | bcftools call -mv -R ${INTERVALS} -f GQ -Oz -o /globalhome/hxo752/HPC/projects/20-1LICH-001/mutect2-pipeline/bcf_call/${PREP1}_${PREP2}.vcf.gz
 
 #https://speciationgenomics.github.io/filtering_vcfs/
