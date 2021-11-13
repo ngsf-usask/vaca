@@ -14,9 +14,8 @@ module load StdEnv/2020
 module load gcc/9.3.0
 module load bcftools/1.13
 
-PROJECT_ID='20-1LICH-001'
 REF='/datastore/NGSF001/analysis/references/human/gencode-30/GRCh38.primary_assembly.genome.fa'
-INPUT_DIR='${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/merged_bam'
+INPUT_DIR='${HOME}/projects/20-1LICH-001/mutect2-pipeline/merged_bam'
 INTERVALS='/datastore/NGSF001/analysis/references/human/hg38/agilent_sureselect_human_all_exon_v8_hg38/S33266340_Covered.noheader.noAlt.bed'
 PREP1=$1
 PREP2=$2
