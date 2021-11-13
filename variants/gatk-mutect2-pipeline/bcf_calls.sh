@@ -4,7 +4,7 @@
 #SBATCH --job-name=bcf-call
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=4
-#SBATCH --time=10:00:00
+#SBATCH --time=04:00:00
 #SBATCH --mem=6G
 #SBATCH  --output=/globalhome/hxo752/HPC/slurm_logs/%j.out
 set -eux
