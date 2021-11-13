@@ -116,10 +116,9 @@ done < ${SCRIPT_DIR}sample_IDs.txt
 for i in 0 1 4 5 8 9
 do
    set ${myarr[i]}
-   CLONE_ID=$1 
    PREP_D1=$2 
    PREP_E1=$3
    
-    sbatch ${SCRIPT_DIR}bcf_calls.sh $CLONE_ID $PREP_D1 $PREP_E1 
+    sbatch ${SCRIPT_DIR}bcf_calls.sh $PREP_D1 $PREP_E1 
     sleep 0.5
 done
