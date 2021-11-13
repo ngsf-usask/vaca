@@ -87,6 +87,25 @@
 ################## ################## ##################
 #STEP 6: Filter uninduced sample Read Depth >=15 & AF <=0.05
 ################## ################## ##################
+#SCRIPT_DIR=/globalhome/hxo752/HPC/ngsf_git_repos/vaca/variants/gatk-mutect2-pipeline/
+#myarr=()
+#while read line
+#do 
+#   myarr+=("$line")
+#done < ${SCRIPT_DIR}sample_IDs.txt
+
+#for i in 2 6 10
+#do
+#   set ${myarr[i]}
+#   CLONE_ID=$1 
+#   
+#    sbatch ${SCRIPT_DIR}06_filteration.sh ${CLONE_ID}
+#   sleep 0.5
+#done
+
+##########
+#BCFTOOLS
+##########
 SCRIPT_DIR=/globalhome/hxo752/HPC/ngsf_git_repos/vaca/variants/gatk-mutect2-pipeline/
 myarr=()
 while read line
@@ -94,11 +113,13 @@ do
    myarr+=("$line")
 done < ${SCRIPT_DIR}sample_IDs.txt
 
-for i in 2 6 10
+for i in 0 1 4 5 8 9
 do
    set ${myarr[i]}
    CLONE_ID=$1 
+   PREP_D1=$2 
+   PREP_E1=$3
    
-    sbatch ${SCRIPT_DIR}06_filteration.sh ${CLONE_ID}
-   sleep 0.5
+    sbatch ${SCRIPT_DIR}bcf_calls.sh $CLONE_ID $PREP_D1 $PREP_E1 
+    sleep 0.5
 done
