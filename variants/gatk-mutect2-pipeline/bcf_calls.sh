@@ -22,6 +22,9 @@ PREP2=$2
 
 #echo ${INPUT_DIR}/merged_bam/${PREP1}_${PREP2}_merged.bam >> ${PREP1}_${PREP2}.txt
 
-bcftools mpileup -Oz -f ${REF} ${HOME}/projects/20-1LICH-001/mutect2-pipeline/merged_bam/${PREP1}_${PREP2}_merged.bam | bcftools call -mv -R ${INTERVALS} -f GQ -Oz -o ${HOME}/projects/20-1LICH-001/mutect2-pipeline/bcf_call/${PREP1}_${PREP2}.vcf.gz
+bcftools mpileup -Oz -f ${REF} ${HOME}/projects/20-1LICH-001/mutect2-pipeline/merged_bam/${PREP1}_${PREP2}_merged.bam -o ${HOME}/projects/20-1LICH-001/mutect2-pipeline/bcf_call/${PREP1}_${PREP2}_mpileup.vcf.gz
+bcftools index -t ${HOME}/projects/20-1LICH-001/mutect2-pipeline/bcf_call/${PREP1}_${PREP2}_mpileup.vcf.gz
+
+#bcftools call -mv -R ${INTERVALS} -f GQ -Oz -o ${HOME}/projects/20-1LICH-001/mutect2-pipeline/bcf_call/${PREP1}_${PREP2}.vcf.gz
 #bcftools index -t ${HOME}/projects/20-1LICH-001/mutect2-pipeline/bcf_call/${PREP1}_${PREP2}.vcf.gz
 #https://speciationgenomics.github.io/filtering_vcfs/
