@@ -15,11 +15,11 @@ module load gcc/9.3.0
 module load bcftools/1.13
 
 REF='/datastore/NGSF001/analysis/references/human/gencode-30/GRCh38.primary_assembly.genome.fa'
-INPUT_DIR='${HOME}/projects/20-1LICH-001/mutect2-pipeline/merged_bam'
+INPUT_DIR='${HOME}/projects/20-1LICH-001/mutect2-pipeline'
 INTERVALS='/datastore/NGSF001/analysis/references/human/hg38/agilent_sureselect_human_all_exon_v8_hg38/S33266340_Covered.noheader.noAlt.bed'
 PREP1=$1
 PREP2=$2
 
-bcftools mpileup -Oz -f ${REF} ${INPUT_DIR}/${PREP1}_${PREP2}_merged.bam | bcftools call -mv -R ${INTERVALS} -f GQ -Oz -o /globalhome/hxo752/HPC/projects/20-1LICH-001/mutect2-pipeline/bcf_call/${PREP1}_${PREP2}.vcf.gz
-
+bcftools mpileup -Oz -f ${REF} ${INPUT_DIR}/merged_bam/${PREP1}_${PREP2}_merged.bam | bcftools call -mv -R ${INTERVALS} -f GQ -Oz -o ${INPUT_DIR}/bcf_call/${PREP1}_${PREP2}.vcf.gz
+bcftools index -t ${INPUT_DIR}/bcf_call/${PREP1}_${PREP2}.vcf.gz
 #https://speciationgenomics.github.io/filtering_vcfs/
