@@ -23,7 +23,7 @@ PREP2=$2
 mkdir -p ${INPUT_DIR}/bcf_mpileup
 #echo ${INPUT_DIR}/merged_bam/${PREP1}_${PREP2}_merged.bam >> ${PREP1}_${PREP2}.txt
 
-bcftools mpileup -Oz -f ${REF} {INPUT_DIR}/merged_bam/${PREP1}_${PREP2}_merged.bam -o ${INPUT_DIR}/bcf_mpileup/${PREP1}_${PREP2}_mpileup.vcf.gz
+bcftools mpileup -Oz -f ${REF} ${INPUT_DIR}/merged_bam/${PREP1}_${PREP2}_merged.bam -o ${INPUT_DIR}/bcf_mpileup/${PREP1}_${PREP2}_mpileup.vcf.gz
 bcftools index -t ${INPUT_DIR}/bcf_mpileup/${PREP1}_${PREP2}_mpileup.vcf.gz
 
 #bcftools call -mv -R ${INTERVALS} -f GQ -Oz -o ${HOME}/projects/20-1LICH-001/mutect2-pipeline/bcf_call/${PREP1}_${PREP2}.vcf.gz
