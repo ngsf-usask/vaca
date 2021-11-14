@@ -27,3 +27,5 @@ bcftools filter \
               -o ${INPUT_DIR}${CLONE_ID}_uninduced_filtered.vcf.gz
 
 #bcftools query -i 'FORMAT/DP>=15 && AF <=0.05' -f '%CHROM %POS %REF %ALT %DP [%AF] %TYPE\n' MCF7_A3A_uninduced_concat.vcf.gz -o MCF7_A3A_uninduced_filtered.vcf.gz
+
+#https://gatk.broadinstitute.org/hc/en-us/community/posts/360076993852-QUAL-values-not-present-in-Mutect2-VCF
