@@ -26,11 +26,14 @@ bcftools filter \
               -i 'FORMAT/DP>=10 && TLOD >=6.3' \
               -o ${INPUT_DIR}${CLONE_ID}_filtered_on_dp_and_tlod.vcf.gz
         
+bcftools stats \
+             ${INPUT_DIR}${CLONE_ID}_filtered_on_dp_and_tlod.vcf.gz > ${INPUT_DIR}${CLONE_ID}_filtered_on_dp_and_tlod.stats
+             
 
-bcftools query \
-             ${INPUT_DIR}${CLONE_ID}_filtered_on_dp_and_tlod.vcf.gz \
-             -f '%POS\n' | wc -l \
-             -o ${INPUT_DIR}${CLONE_ID}_filtered_on_dp_and_tlod_stats.vcf.gz
+#bcftools query \
+#             ${INPUT_DIR}${CLONE_ID}_filtered_on_dp_and_tlod.vcf.gz \
+#             -f '%POS\n' | wc -l \
+#             -o ${INPUT_DIR}${CLONE_ID}_filtered_on_dp_and_tlod_stats.vcf.gz
 
 
 #bcftools query -i 'FORMAT/DP>=15 && AF <=0.05' -f '%CHROM %POS %REF %ALT %DP [%AF] %TYPE\n' MCF7_A3A_uninduced_concat.vcf.gz -o MCF7_A3A_uninduced_filtered.vcf.gz
