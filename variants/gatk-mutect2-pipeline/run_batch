@@ -105,9 +105,9 @@ do
    sleep 0.5
 done
 
-##########
-#BCFTOOLS
-##########
+##################
+#BCFTOOLS MPILEUP
+##################
 #SCRIPT_DIR=/globalhome/hxo752/HPC/ngsf_git_repos/vaca/variants/gatk-mutect2-pipeline/
 #myarr=()
 #while read line
