@@ -26,11 +26,18 @@ bcftools filter \
               ${INPUT_DIR}${CLONE_ID}_${PREP1}_${PREP2}.vcf.gz \
               -i 'FORMAT/DP>=10 && TLOD >=6.3' \
               -o ${INPUT_DIR}${CLONE_ID}_${PREP1}_${PREP2}_filtered_on_dp_and_tlod.vcf.gz
-        
+#Generate Stats        
 bcftools stats \
              ${INPUT_DIR}${CLONE_ID}_${PREP1}_${PREP2}_filtered_on_dp_and_tlod.vcf.gz > ${INPUT_DIR}${CLONE_ID}_${PREP1}_${PREP2}_filtered_on_dp_and_tlod.stats
              
-
+#select only SNVs
+bcftools view \
+            ${INPUT_DIR}${CLONE_ID}_${PREP1}_${PREP2}_filtered_on_dp_and_tlod.vcf.gz \
+            -v snps \
+            -o ${INPUT_DIR}${CLONE_ID}_${PREP1}_${PREP2}_filtered_on_dp_and_tlod_only_SNPs.vcf.gz
+            
+            
+            
 #bcftools query \
 #             ${INPUT_DIR}${CLONE_ID}_filtered_on_dp_and_tlod.vcf.gz \
 #             -f '%POS\n' | wc -l \
