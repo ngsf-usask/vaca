@@ -31,3 +31,4 @@ bcftools filter \
 #https://gatk.broadinstitute.org/hc/en-us/community/posts/360076993852-QUAL-values-not-present-in-Mutect2-VCF
 #https://www.biostars.org/p/184955/
 #https://www.biostars.org/p/490144/
+#https://genomemedicine.biomedcentral.com/articles/10.1186/s13073-020-00791-w
