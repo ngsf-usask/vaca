@@ -17,14 +17,21 @@ module load gcc/9.3.0
 module load bcftools/1.13
 
 PROJECT_ID='20-1LICH-001'
-INPUT_DIR="${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/mutect2_calling/"
+INPUT_DIR="${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/filtered_vcfs/"
 CLONE_ID=$1
 
-#filter uninduced vcfs on Read Depth and Allele Frequency
+#filter induced vcfs on Read Depth and TLOD
 bcftools filter \
-              -i 'FORMAT/DP>=15 && FORMAT/AF <=0.05' \
-              ${INPUT_DIR}${CLONE_ID}_uninduced_concat.vcf.gz \
-              -o ${INPUT_DIR}${CLONE_ID}_uninduced_filtered.vcf.gz
+              ${INPUT_DIR}${CLONE_ID}.vcf.gz \
+              -i 'FORMAT/DP>=10 && TLOD >=6.3' \
+              -o ${INPUT_DIR}${CLONE_ID}_filtered_on_dp_and_tlod.vcf.gz
+        
+
+bcftools query \
+             ${INPUT_DIR}${CLONE_ID}_filtered_on_dp_and_tlod.vcf.gz \
+             -f '%POS\n' | wc -l \
+             -o ${INPUT_DIR}${CLONE_ID}_filtered_on_dp_and_tlod_stats.vcf.gz
+
 
 #bcftools query -i 'FORMAT/DP>=15 && AF <=0.05' -f '%CHROM %POS %REF %ALT %DP [%AF] %TYPE\n' MCF7_A3A_uninduced_concat.vcf.gz -o MCF7_A3A_uninduced_filtered.vcf.gz
 
