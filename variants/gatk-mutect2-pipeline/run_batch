@@ -98,8 +98,10 @@ for i in 0 1 4 5 8 9
 do
    set ${myarr[i]}
    CLONE_ID=$1 
+   PREP1=$2
+   PREP2=$3
    
-    sbatch ${SCRIPT_DIR}06_filteration.sh ${CLONE_ID}
+    sbatch ${SCRIPT_DIR}06_filteration.sh ${CLONE_ID} ${PREP1} ${PREP2}
    sleep 0.5
 done
 
