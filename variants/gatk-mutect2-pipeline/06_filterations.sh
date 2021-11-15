@@ -34,7 +34,7 @@ bcftools stats \
 bcftools view \
             ${INPUT_DIR}${CLONE_ID}_${PREP1}_${PREP2}_filtered_on_dp_and_tlod.vcf.gz \
             -v snps \
-            -o ${INPUT_DIR}${CLONE_ID}_${PREP1}_${PREP2}_filtered_on_dp_and_tlod_only_SNPs.vcf.gz
+            -o ${INPUT_DIR}${CLONE_ID}_${PREP1}_${PREP2}_filtered_on_dp_and_tlod_only_SNVs.vcf.gz
             
             
             
