@@ -1,5 +1,4 @@
- #!/bin/bash
-
+#!/bin/bash
 #SBATCH --account=hpc_p_anderson
 #SBATCH --constraint=skylake
 #SBATCH --job-name=bcftools-filter
