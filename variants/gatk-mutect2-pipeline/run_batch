@@ -101,7 +101,7 @@ do
    PREP1=$2
    PREP2=$3
    
-    sbatch ${SCRIPT_DIR}06_filteration.sh ${CLONE_ID} ${PREP1} ${PREP2}
+    sbatch ${SCRIPT_DIR}06_filterations.sh ${CLONE_ID} ${PREP1} ${PREP2}
    sleep 0.5
 done
 
