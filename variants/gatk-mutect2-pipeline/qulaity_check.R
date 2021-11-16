@@ -1,13 +1,14 @@
 
 
 #MCF7 variants from literature
-mcf7_var_lit <- read.table("MCF7_variants_from_literature.txt", header=FALSE)
+mcf7_var_lit <- read.table("/globalhome/hxo752/HPC/projects/20-1LICH-001/mutect2-pipeline/MCF7_variants_from_literature.txt", header=FALSE)
 
 #SNVs extraction
 #bcftools view MCF7_A3B_uninduced_concat.vcf.gz -v snps -o MCF7_A3B_uninduced.vcf.gz
 #Required column Extraction
 #bcftools query -f '%CHROM %POS %REF %ALT\n' MCF7_A3B_uninduced.vcf.gz > MCF7_A3B_uninduced.txt
 
+setwd('/globalhome/hxo752/HPC/projects/20-1LICH-001/mutect2-pipeline/')
 #Mutect2 variants
 mutect2_var <- function(sample_file){
 mcf7_var <- read.table(sample_file, header=FALSE)
@@ -31,7 +32,7 @@ mcf7_var1 <- mcf7_var[c(2,3,6,7)]
 merge_var <- merge(mcf7_var_lit,mcf7_var1, by.x=c('V1','V2'), by.y=c('V2','V3'))
 #paste0(sample_file,"=", merge_var[!duplicated(merge_var$V2),])
 merge_var[!duplicated(merge_var$V2),]
- merge_var
+merge_var
 }
 
 isomut2_var("E2100021")
