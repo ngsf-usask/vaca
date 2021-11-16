@@ -22,18 +22,19 @@ mutect2_var("MCF7_A3H_uninduced.txt")
 
 
 
+setwd('/datastore/NGSF001/projects/20-1LICH-001/isomut2_results/')
 #Isomut2 variants
-isomut2_var <- function(sample_file){
-mcf7_var <- read.table(sample_file, header=FALSE)
+isomut2_var <- function(sample){
+mcf7_var <- read.table(sample/all_SNVs.isomut2, header=FALSE)
 mcf7_var$V1 <- gsub("^chr","", as.character(mcf7_var$V1))
 merge_var <- merge(mcf7_var_lit,mcf7_var, by=c('V1','V2'))
 #paste0(sample_file,"=", merge_var[!duplicated(merge_var$V2),])
 merge_var[!duplicated(merge_var$V2),]
 }
 
-isomut2_var(E2100021)
-isomut2_var(E2100016)
-isomut2_var(E2100015)
-isomut2_var(E2100023)
-isomut2_var(E2100022)
-isomut2_var(E2100017)
+isomut2_var("E2100021")
+isomut2_var("E2100016")
+isomut2_var("E2100015")
+isomut2_var("E2100023")
+isomut2_var("E2100022")
+isomut2_var("E2100017")
