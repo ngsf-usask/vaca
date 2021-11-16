@@ -1,6 +1,7 @@
 
 
 #MCF7 variants from literature
+#4393
 mcf7_var_lit <- read.table("/globalhome/hxo752/HPC/projects/20-1LICH-001/mutect2-pipeline/MCF7_variants_from_literature.txt", header=FALSE)
 
 #SNVs extraction
