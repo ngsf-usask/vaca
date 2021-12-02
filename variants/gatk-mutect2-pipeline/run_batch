@@ -101,7 +101,7 @@
  
 #################################################################
 #STEP 6: FILTER INDUCED SAMPLES [Read Depth >=15 & TLOD >=6.3]
-         FILTER UNINDUCED SAMPLES [Read Depth >=15]
+        # FILTER UNINDUCED SAMPLES [Read Depth >=15]
 #################################################################
 #SCRIPT_DIR=/globalhome/hxo752/HPC/ngsf_git_repos/vaca/variants/gatk-mutect2-pipeline/
 #myarr=()
