@@ -43,7 +43,7 @@ else
 INPUT_DIR="/datastore/NGSF001/projects/20-1LICH-001/mutect2-pipeline/mutect2_calling/"
 OUTDIR="${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/filtered_vcfs/"
 bcftools filter \
-              ${INPUT_DIR}${CLONE_ID}_${PREP1}_${PREP2}.vcf.gz \
+              ${INPUT_DIR}${PREP1}_${PREP2}.vcf.gz \
               -i 'FORMAT/DP>=10' \
               -o ${OUTDIR}${CLONE_ID}_${PREP1}_${PREP2}_filtered_on_dp_and_tlod.vcf.gz
 #Generate Stats        
