@@ -45,16 +45,16 @@ OUTDIR="${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/filtered_vcfs/"
 bcftools filter \
               ${INPUT_DIR}${PREP1}_${PREP2}.vcf.gz \
               -i 'FORMAT/DP>=10' \
-              -o ${OUTDIR}${CLONE_ID}_${PREP1}_${PREP2}_filtered_on_dp_and_tlod.vcf.gz
+              -o ${OUTDIR}${CLONE_ID}_${PREP1}_${PREP2}_filtered_on_dp.vcf.gz
 #Generate Stats        
 bcftools stats \
-             ${OUTDIR}${CLONE_ID}_${PREP1}_${PREP2}_filtered_on_dp_and_tlod.vcf.gz > ${OUTDIR}${CLONE_ID}_${PREP1}_${PREP2}_filtered_on_dp_and_tlod.stats
+             ${OUTDIR}${CLONE_ID}_${PREP1}_${PREP2}_filtered_on_dp.vcf.gz > ${OUTDIR}${CLONE_ID}_${PREP1}_${PREP2}_filtered_on_dp.stats
              
 #select only SNVs
 bcftools view \
-            ${OUTDIR}${CLONE_ID}_${PREP1}_${PREP2}_filtered_on_dp_and_tlod.vcf.gz \
+            ${OUTDIR}${CLONE_ID}_${PREP1}_${PREP2}_filtered_on_dp.vcf.gz \
             -v snps \
-            -o ${OUTDIR}${CLONE_ID}_${PREP1}_${PREP2}_filtered_on_dp_and_tlod_only_SNVs.vcf.gz
+            -o ${OUTDIR}${CLONE_ID}_${PREP1}_${PREP2}_filtered_on_dp_only_SNVs.vcf.gz
             
 fi
 
