@@ -101,23 +101,43 @@
  
 #################################################################
 #STEP 6: FILTER INDUCED SAMPLES [Read Depth >=15 & TLOD >=6.3]
-         FILTER UNINDUCED SAMPLES [Read Depth >=15 & TLOD >=6.3]
+         FILTER UNINDUCED SAMPLES [Read Depth >=15]
 #################################################################
+#SCRIPT_DIR=/globalhome/hxo752/HPC/ngsf_git_repos/vaca/variants/gatk-mutect2-pipeline/
+#myarr=()
+#while read line
+#do 
+#   myarr+=("$line")
+#done < ${SCRIPT_DIR}sample_IDs.txt 
+
+#for i in 0 1 4 5 8 9
+#do
+#   set ${myarr[i]}
+#   CLONE_ID=$1 
+#   PREP1=$2
+#   PREP2=$3
+#   SAMPLE_TYPE="induced"
+   
+#    sbatch ${SCRIPT_DIR}06_filterations.sh ${CLONE_ID} ${PREP1} ${PREP2} ${SAMPLE_TYPE}
+#   sleep 0.5
+#done
+
 SCRIPT_DIR=/globalhome/hxo752/HPC/ngsf_git_repos/vaca/variants/gatk-mutect2-pipeline/
 myarr=()
 while read line
 do 
    myarr+=("$line")
-done < ${SCRIPT_DIR}sample_IDs.txt
+done < ${SCRIPT_DIR}sample_IDs.txt 
 
-for i in 0 1 4 5 8 9
+for i in 2 6 10
 do
    set ${myarr[i]}
    CLONE_ID=$1 
    PREP1=$2
    PREP2=$3
+   SAMPLE_TYPE="uninduced"
    
-    sbatch ${SCRIPT_DIR}06_filterations.sh ${CLONE_ID} ${PREP1} ${PREP2}
+    sbatch ${SCRIPT_DIR}06_filterations.sh ${CLONE_ID} ${PREP1} ${PREP2} ${SAMPLE_TYPE}
    sleep 0.5
 done
 
