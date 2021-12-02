@@ -22,7 +22,7 @@ PREP1=$2
 PREP2=$3
 SAMPLE_TYPE=$4
 
-if [[ "$SAMPLE_TYPE" == "induced" ]]
+if [[ $SAMPLE_TYPE == "induced" ]]
 then
 #filter induced vcfs on Read Depth and TLOD for induced samples
 bcftools filter \
@@ -42,7 +42,7 @@ bcftools view \
 else
 bcftools filter \
               ${INPUT_DIR}${CLONE_ID}_${PREP1}_${PREP2}.vcf.gz \
-              -i 'FORMAT/DP>=10 && TLOD >=2.2' \
+              -i 'FORMAT/DP>=10' \
               -o ${INPUT_DIR}${CLONE_ID}_${PREP1}_${PREP2}_filtered_on_dp_and_tlod.vcf.gz
 #Generate Stats        
 bcftools stats \
