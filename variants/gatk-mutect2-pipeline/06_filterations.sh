@@ -22,7 +22,7 @@ PREP1=$2
 PREP2=$3
 SAMPLE_TYPE=$4
 
-if [[ $SAMPLE_TYPE == "induced" ]]
+if [[ $SAMPLE_TYPE == "filtered induced" ]]
 then
 #filter induced vcfs on Read Depth and TLOD for induced samples
 bcftools filter \
@@ -39,7 +39,7 @@ bcftools view \
             -v snps \
             -o ${INPUT_DIR}${CLONE_ID}_${PREP1}_${PREP2}_filtered_on_dp_and_tlod_only_SNVs.vcf.gz
 
-else
+elif [[ $SAMPLE_TYPE == "uninduced" ]]
 INPUT_DIR="/datastore/NGSF001/projects/20-1LICH-001/mutect2-pipeline/mutect2_calling/"
 OUTDIR="${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/filtered_vcfs/"
 bcftools filter \
