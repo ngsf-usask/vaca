@@ -2,7 +2,10 @@
 
 #MCF7 variants from literature
 #4393
-mcf7_var_lit <- read.table("/globalhome/hxo752/HPC/projects/20-1LICH-001/mutect2-pipeline/MCF7_variants_from_literature.txt", header=FALSE)
+#mcf7_var_lit <- read.table("/globalhome/hxo752/HPC/projects/20-1LICH-001/mutect2-pipeline/MCF7_variants_from_literature.txt", header=FALSE)
+
+mcf7_var_lit <- read.table("/globalhome/hxo752/HPC/projects/20-1LICH-001/mutect2-pipeline/snv_list_mcf7.txt", header=FALSE)
+
 
 #SNVs extraction
 #bcftools view MCF7_A3B_uninduced_concat.vcf.gz -v snps -o MCF7_A3B_uninduced.vcf.gz
