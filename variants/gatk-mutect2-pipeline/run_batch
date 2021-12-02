@@ -18,7 +18,6 @@
 
 #####################
 #STEP2 : MERGE PREPS
-#STEP3 : MUTECT2 CALL
 #####################
 #SCRIPT_DIR=/globalhome/hxo752/HPC/ngsf_git_repos/vaca/variants/gatk-mutect2-pipeline/
 #myarr=()
@@ -31,13 +30,29 @@
 #do
 #   set ${myarr[i]}
    #sbatch 02_merge_preps.sh $2 $3
-#   sbatch 03_mutect2_calling.sh $2 $3
 #   sleep 0.5
 # done
 #https://stackoverflow.com/questions/68215694/how-to-submit-a-slurm-job-via-sbatch-that-depends-on-a-list-of-jobs
 
+
+#####################
+#STEP3 : MUTECT2 CALL
+#####################
+#SCRIPT_DIR=/globalhome/hxo752/HPC/ngsf_git_repos/vaca/variants/gatk-mutect2-pipeline/
+#myarr=()
+#while read line
+#do 
+#   myarr+=("$line")
+#done < ${SCRIPT_DIR}sample_IDs.txt
+ 
+#for i in $(seq 0 11)
+#do
+#   set ${myarr[i]}
+#   sbatch 03_mutect2_calling.sh $2 $3
+#   sleep 0.5
+# done
 ###########################################
-#STEP4 : MERGE UNINDUCED SAMPLES PER CLONE
+#STEP4 : MERGE UNINDUCED SAMPLES PER PROTEIN
 ###########################################
 #SCRIPT_DIR=/globalhome/hxo752/HPC/ngsf_git_repos/vaca/variants/gatk-mutect2-pipeline/
 #myarr=()
@@ -85,7 +100,8 @@
  
  
 #################################################################
-#STEP 6: Filter induced sample [Read Depth >=15 & TLOD >=6.3]
+#STEP 6: FILTER INDUCED SAMPLES [Read Depth >=15 & TLOD >=6.3]
+         FILTER UNINDUCED SAMPLES [Read Depth >=15 & TLOD >=6.3]
 #################################################################
 SCRIPT_DIR=/globalhome/hxo752/HPC/ngsf_git_repos/vaca/variants/gatk-mutect2-pipeline/
 myarr=()
