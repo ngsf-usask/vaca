@@ -16,14 +16,15 @@ module load gcc/9.3.0
 module load bcftools/1.13
 
 PROJECT_ID='20-1LICH-001'
-INPUT_DIR="${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/filtered_vcfs/"
 CLONE_ID=$1
 PREP1=$2
 PREP2=$3
 SAMPLE_TYPE=$4
 
-if [[ $SAMPLE_TYPE == "filtered induced" ]]
+
+if [[ $SAMPLE_TYPE == "filtered induced" ]] #uninduced sample snvs were subracted from induced samples
 then
+INPUT_DIR="${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/filtered_vcfs/"
 #filter induced vcfs on Read Depth and TLOD for induced samples
 bcftools filter \
               ${INPUT_DIR}${CLONE_ID}_${PREP1}_${PREP2}.vcf.gz \
@@ -39,7 +40,8 @@ bcftools view \
             -v snps \
             -o ${INPUT_DIR}${CLONE_ID}_${PREP1}_${PREP2}_filtered_on_dp_and_tlod_only_SNVs.vcf.gz
 
-elif [[ $SAMPLE_TYPE == "uninduced" ]]
+elif [[ $SAMPLE_TYPE == "induced" ]]
+then
 INPUT_DIR="/datastore/NGSF001/projects/20-1LICH-001/mutect2-pipeline/mutect2_calling/"
 OUTDIR="${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/filtered_vcfs/"
 bcftools filter \
@@ -55,7 +57,24 @@ bcftools view \
             ${OUTDIR}${CLONE_ID}_${PREP1}_${PREP2}_filtered_on_dp.vcf.gz \
             -v snps \
             -o ${OUTDIR}${CLONE_ID}_${PREP1}_${PREP2}_filtered_on_dp_only_SNVs.vcf.gz
-            
+
+else
+INPUT_DIR="/datastore/NGSF001/projects/20-1LICH-001/mutect2-pipeline/mutect2_calling/"
+OUTDIR="${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/filtered_vcfs/"
+bcftools filter \
+              ${INPUT_DIR}${PREP1}_${PREP2}.vcf.gz \
+              -i 'FORMAT/DP>=10' \
+              -o ${OUTDIR}${CLONE_ID}_${PREP1}_${PREP2}_filtered_on_dp.vcf.gz
+#Generate Stats        
+bcftools stats \
+             ${OUTDIR}${CLONE_ID}_${PREP1}_${PREP2}_filtered_on_dp.vcf.gz > ${OUTDIR}${CLONE_ID}_${PREP1}_${PREP2}_filtered_on_dp.stats
+             
+#select only SNVs
+bcftools view \
+            ${OUTDIR}${CLONE_ID}_${PREP1}_${PREP2}_filtered_on_dp.vcf.gz \
+            -v snps \
+            -o ${OUTDIR}${CLONE_ID}_${PREP1}_${PREP2}_filtered_on_dp_only_SNVs.vcf.gz
+
 fi
 
 #bcftools query \
