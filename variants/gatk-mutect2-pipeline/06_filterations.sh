@@ -20,8 +20,11 @@ INPUT_DIR="${HOME}/projects/${PROJECT_ID}/mutect2-pipeline/filtered_vcfs/"
 CLONE_ID=$1
 PREP1=$2
 PREP2=$3
+SAMPLE_TYPE=$4
 
-#filter induced vcfs on Read Depth and TLOD
+if [[ "$SAMPLE_TYPE" == "induced" ]]
+then
+#filter induced vcfs on Read Depth and TLOD for induced samples
 bcftools filter \
               ${INPUT_DIR}${CLONE_ID}_${PREP1}_${PREP2}.vcf.gz \
               -i 'FORMAT/DP>=10 && TLOD >=6.3' \
@@ -35,9 +38,24 @@ bcftools view \
             ${INPUT_DIR}${CLONE_ID}_${PREP1}_${PREP2}_filtered_on_dp_and_tlod.vcf.gz \
             -v snps \
             -o ${INPUT_DIR}${CLONE_ID}_${PREP1}_${PREP2}_filtered_on_dp_and_tlod_only_SNVs.vcf.gz
+
+else
+bcftools filter \
+              ${INPUT_DIR}${CLONE_ID}_${PREP1}_${PREP2}.vcf.gz \
+              -i 'FORMAT/DP>=10 && TLOD >=2.2' \
+              -o ${INPUT_DIR}${CLONE_ID}_${PREP1}_${PREP2}_filtered_on_dp_and_tlod.vcf.gz
+#Generate Stats        
+bcftools stats \
+             ${INPUT_DIR}${CLONE_ID}_${PREP1}_${PREP2}_filtered_on_dp_and_tlod.vcf.gz > ${INPUT_DIR}${CLONE_ID}_${PREP1}_${PREP2}_filtered_on_dp_and_tlod.stats
+             
+#select only SNVs
+bcftools view \
+            ${INPUT_DIR}${CLONE_ID}_${PREP1}_${PREP2}_filtered_on_dp_and_tlod.vcf.gz \
+            -v snps \
+            -o ${INPUT_DIR}${CLONE_ID}_${PREP1}_${PREP2}_filtered_on_dp_and_tlod_only_SNVs.vcf.gz
             
-            
-            
+fi
+
 #bcftools query \
 #             ${INPUT_DIR}${CLONE_ID}_filtered_on_dp_and_tlod.vcf.gz \
 #             -f '%POS\n' | wc -l \
