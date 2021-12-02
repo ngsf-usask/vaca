@@ -26,7 +26,8 @@ mutect2_var("MCF7_A3B_uninduced.txt")
 mutect2_var("MCF7_A3H_uninduced.txt")
 
 
-mcf7_var_lit <- read.table("/globalhome/hxo752/HPC/projects/20-1LICH-001/mutect2-pipeline/MCF7_variants_from_literature.txt", header=FALSE)
+#mcf7_var_lit <- read.table("/globalhome/hxo752/HPC/projects/20-1LICH-001/mutect2-pipeline/MCF7_variants_from_literature.txt", header=FALSE)
+mcf7_var_lit <- read.table("/globalhome/hxo752/HPC/projects/20-1LICH-001/mutect2-pipeline/snv_list_mcf7.txt", header=FALSE)
 setwd('/datastore/NGSF001/projects/20-1LICH-001/isomut2_results/')
 #Isomut2 variants
 isomut2_var <- function(sample){
