@@ -12,14 +12,15 @@ mcf7_var_lit <- read.table("/globalhome/hxo752/HPC/projects/20-1LICH-001/mutect2
 #Required column Extraction
 #bcftools query -f '%CHROM %POS %REF %ALT\n' MCF7_A3B_uninduced.vcf.gz > MCF7_A3B_uninduced.txt
 
-setwd('/globalhome/hxo752/HPC/projects/20-1LICH-001/mutect2-pipeline/')
+setwd('/globalhome/hxo752/HPC/projects/20-1LICH-001/mutect2-pipeline/SNV_check/')
 #Mutect2 variants
 mutect2_var <- function(sample_file){
 mcf7_var <- read.table(sample_file, header=FALSE)
 mcf7_var$V1 <- gsub("^chr","", as.character(mcf7_var$V1))
 merge_var <- merge(mcf7_var_lit,mcf7_var, by.x=c('Chr','Start.Position'), by.y=c('V1','V2'))
 #paste0(sample_file,"=", merge_var[!duplicated(merge_var$V2),])
-merge_var[!duplicated(merge_var$V2),]
+#merge_var[!duplicated(merge_var$V2),]
+  merge_var
 }
 mutect2_var("MCF7_A3A_uninduced.txt")
 mutect2_var("MCF7_A3B_uninduced.txt")
