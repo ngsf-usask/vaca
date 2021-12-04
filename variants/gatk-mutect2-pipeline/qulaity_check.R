@@ -50,16 +50,26 @@ isomut2_var("E2100017")
 
 #strelka
 setwd("/datastore/NGSF001/projects/20-1LICH-001/strelka/germline/")
-"A3A-I4_strelka/results/variants/variants.vcf.gz"
-"A3A-I5_strelka/results/variants/variants.vcf.gz"
-"A3A-U1_strelka/results/variants/variants.vcf.gz"
-"A3A-U6_strelka/results/variants/variants.vcf.gz"
-"A3B-I2_strelka/results/variants/variants.vcf.gz"
-"A3B-I5_strelka/results/variants/variants.vcf.gz"
-"A3B-U1_strelka/results/variants/variants.vcf.gz"
-"A3B-U2_strelka/results/variants/variants.vcf.gz"
-"A3H-I4_strelka/results/variants/variants.vcf.gz"
-"A3H-I6_strelka/results/variants/variants.vcf.gz"
-"A3H-U2_strelka/results/variants/variants.vcf.gz"
-"A3H-U6_strelka/results/variants/variants.vcf.gz"
+strelka_var <- function(sample_file){
+mcf7_var <- read.table(sample_file), header=FALSE)
+mcf7_var$V2 <- gsub("^chr","", as.character(mcf7_var$V2))
+mcf7_var1 <- mcf7_var[c(2,3,6,7)]
+merge_var <- merge(mcf7_var_lit,mcf7_var1, by.x=c('Chr','Start.Position'), by.y=c('V2','V3'))
+#paste0(sample_file,"=", merge_var[!duplicated(merge_var$V2),])
+#merge_var[!duplicated(merge_var$V2),]
+merge_var
+}
+
+strelka_var("A3A-I4_strelka/results/variants/variants.vcf.gz")
+strelka_var("A3A-I5_strelka/results/variants/variants.vcf.gz")
+strelka_var("A3A-U1_strelka/results/variants/variants.vcf.gz")
+strelka_var("A3A-U6_strelka/results/variants/variants.vcf.gz")
+strelka_var("A3B-I2_strelka/results/variants/variants.vcf.gz")
+strelka_var("A3B-I5_strelka/results/variants/variants.vcf.gz")
+strelka_var("A3B-U1_strelka/results/variants/variants.vcf.gz")
+strelka_var("A3B-U2_strelka/results/variants/variants.vcf.gz")
+strelka_var("A3H-I4_strelka/results/variants/variants.vcf.gz")
+strelka_var("A3H-I6_strelka/results/variants/variants.vcf.gz")
+strelka_var("A3H-U2_strelka/results/variants/variants.vcf.gz")
+strelka_var("A3H-U6_strelka/results/variants/variants.vcf.gz")
 
