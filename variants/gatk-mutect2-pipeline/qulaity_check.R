@@ -49,4 +49,17 @@ isomut2_var("E2100022")
 isomut2_var("E2100017")
 
 #strelka
+setwd("/datastore/NGSF001/projects/20-1LICH-001/strelka/germline/")
+"A3A-I4_strelka/results/variants/variants.vcf.gz"
+"A3A-I5_strelka/results/variants/variants.vcf.gz"
+"A3A-U1_strelka/results/variants/variants.vcf.gz"
+"A3A-U6_strelka/results/variants/variants.vcf.gz"
+"A3B-I2_strelka/results/variants/variants.vcf.gz"
+"A3B-I5_strelka/results/variants/variants.vcf.gz"
+"A3B-U1_strelka/results/variants/variants.vcf.gz"
+"A3B-U2_strelka/results/variants/variants.vcf.gz"
+"A3H-I4_strelka/results/variants/variants.vcf.gz"
+"A3H-I6_strelka/results/variants/variants.vcf.gz"
+"A3H-U2_strelka/results/variants/variants.vcf.gz"
+"A3H-U6_strelka/results/variants/variants.vcf.gz"
 
